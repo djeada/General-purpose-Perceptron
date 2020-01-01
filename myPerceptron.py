@@ -33,7 +33,7 @@ class Perceptron():
             self.train()
     
         fig, ax = plt.subplots()
-        ax.plot(np.arange(self.epochs), [sum(x) for x in self.error])
+        ax.plot(np.arange(self.epochs), [1/sum(x) for x in self.error])
         ax.set(xlabel='Epoch', ylabel='Sum Error',
                title='Perceptron Convergence')
         plt.show()
@@ -60,29 +60,29 @@ class Perceptron():
 
 def check_correctness(inputs, outputs, perceptron):
     for i in range(len(inputs)):
-        if outputs[i] == int(perceptron.check(inputs[i])):
+        if outputs[i] == ceil(perceptron.check(inputs[i])):
             print('SUCCESS')
         else:
             print('FAILURE')
         
-         
+#Training data for AND gate
 AND_inputs = np.array([[0,0],[0,1],[1,0],[1,1]])
 AND_outputs = np.array([[0,0,0,1]]).T
 
+#Perceptron object for AND gate
 AND = Perceptron(AND_inputs, AND_outputs)
 AND.train()
 
-for x in AND_inputs:
-    print(AND.check(x))
-
+#Training data for AND gate
 OR_inputs = np.array([[0,0],[0,1],[1,0],[1,1]])
 OR_outputs = np.array([[0,1,1,1]]).T
 
+#Perceptron object for OR gate
 OR = Perceptron(OR_inputs, OR_outputs)
 OR.train()
 
-for x in OR_inputs:
-    print(OR.check(x))
+check_correctness(AND_inputs, AND_outputs, AND)
+check_correctness(OR_inputs, OR_outputs, OR)
 
 AND.visualize_data()
 OR.visualize_data()
