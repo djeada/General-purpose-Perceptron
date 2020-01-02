@@ -60,11 +60,11 @@ class Perceptron():
 
 def check_correctness(inputs, outputs, perceptron):
     for i in range(len(inputs)):
-        if outputs[i] == ceil(perceptron.check(inputs[i])):
+        if outputs[i] == np.round(perceptron.check(inputs[i])):
             print('SUCCESS')
         else:
             print('FAILURE')
-        
+
 #Training data for AND gate
 AND_inputs = np.array([[0,0],[0,1],[1,0],[1,1]])
 AND_outputs = np.array([[0,0,0,1]]).T
